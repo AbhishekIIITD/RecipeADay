@@ -1,0 +1,11 @@
+.subscribe{
+    display: flex;
+    justify-content: flex-start;
+    & > div{
+        margin: 8px;      
+    }
+    @media screen and (max-width:350px) {
+        flex-direction: column;
+    }
+
+}

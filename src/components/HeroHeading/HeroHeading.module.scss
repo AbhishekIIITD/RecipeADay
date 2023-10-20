@@ -1,0 +1,16 @@
+@import "../../styles/variables.module.scss";
+.heading{
+   font-size: 72px;
+   @media screen and (max-width:$screen--small) {
+       font-size: 48px;
+       
+   }
+}
+.subHead{
+    
+    @media screen and (max-width:$screen--small) {
+        font-size: 20px;
+        
+    }
+    font-size: 24px;
+}

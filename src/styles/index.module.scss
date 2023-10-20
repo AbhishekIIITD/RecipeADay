@@ -1,0 +1,45 @@
+@import "../styles/utils.scss";
+@import "../styles/variables.module.scss";
+.index {
+  margin-top: 80px;
+  min-height: 100vh;
+  background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 0) 0%,
+      rgba(30, 30, 30, 1) 100%
+    ),linear-gradient(
+      180deg,
+      rgba(2, 0, 36, 0) 0%,
+      rgba(30, 30, 30, 0.5) 100%
+    ),
+    url("../assets/background.png");
+  background-size: cover;
+  background-position: top right;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .parent {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    
+    @media screen and (max-width:$screen--small) {
+        flex-direction: column;
+    }
+    .headSub {
+        margin: 0 2rem;
+        @media screen and (max-width:$screen--small) {
+            margin: 8px ;
+        }
+
+    }
+  }
+}
+.dataCards{
+  display: flex;
+  padding: 3em;
+  @media screen and (max-width: $screen--small) {
+    flex-direction: column;
+   }
+}

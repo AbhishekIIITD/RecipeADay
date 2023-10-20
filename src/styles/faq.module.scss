@@ -1,0 +1,22 @@
+.parent{
+    margin-top: 92px;
+    min-height: calc(100vh - 92px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .heading{
+        font-size: 65px;
+        font-weight: 700;
+    }
+    .faqContainer{
+        max-width: 700px;
+        width: 90%;
+        background-color: #5a5f67;
+        transition: all 0.5s;
+        padding: 2rem;
+        border-radius: 25px;
+        
+    }
+    
+}

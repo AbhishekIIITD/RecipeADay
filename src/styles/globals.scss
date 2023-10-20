@@ -1,0 +1,36 @@
+@import "./utils.scss";
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Roboto:wght@100;600;500;700&display=swap');
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  // $prefers-color-scheme: dark !global;
+  // @include setPrefersColorScheme();
+  padding: 0;
+  margin: 0;
+  max-width: 100vw !important;
+  // @include set-background($bg-gradient);
+  background-repeat: no-repeat;
+  color: white;
+  background: #303641;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Italiana', serif;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  min-width: none;
+}
