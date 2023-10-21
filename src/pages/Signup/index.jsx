@@ -16,6 +16,37 @@ export default function Signup() {
 
   const handleGoogleSubmit=(e)=>{
     //do the needful anna
+    gapi.load('auth2', async () => {
+      const auth2 = await gapi.auth2.init({
+        client_id: '263231929945-k2paolaf1o66jsgv08q1g93a7o987125.apps.googleusercontent.com', // Replace with your Google client ID
+      });
+  
+  
+      try {
+        const googleUser = await auth2.signIn();
+  
+        const id_token = googleUser.getAuthResponse().id_token;
+  
+        const response = await fetch('/api/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id_token }),
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data.message); 
+        } else {
+          
+          const errorData = await response.json();
+          console.error(errorData.error);
+        }
+      } catch (error) {
+        console.error('Error during Google Sign-In:', error);
+      }
+    });
   }
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
