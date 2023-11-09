@@ -2,8 +2,8 @@
 const nextConfig = {
   experimental: {
     appDir: true,
+    output: 'standalone', // Move the output option here
   },
-  output: 'standalone',
   postcss: (webpack) => {
     return [
       require('tailwindcss'),
@@ -18,4 +18,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;

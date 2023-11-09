@@ -11,39 +11,34 @@ import Head from 'next/head'
 import GetStarted from '@/components/Button/GetStartedButton/GetStarted.component'
 export default function Index() {
   return (
-    <div>
-      {/* <Head>
-      <meta name="google-signin-client_id" content="263231929945-k2paolaf1o66jsgv08q1g93a7o987125.apps.googleusercontent.com" ></meta>
-      </Head> */}
-      <div className={styles.index}>
-        <div className={styles.parent}>
-          <div className={styles.headSub}>
-            <HeroHeading className={styles.heading} />
-            <Subscribe />
-            {/* <GetStarted className={styles.getstarted} /> */}
-            {/* <Button text={"Get Subscriber List"} onClick={
-              async () => {
-                const status = await getSubscriberListFromMongodb();
-                if (status === 200) {
-                  alert("Thank you for subscribing");
-                } else {
-                  alert("Something went wrong");
-                }
-              }
-            } /> */}
-          </div>
-          <div>
-            <GlassCard className={styles.glasscard} />
-          </div>
+    <div className=' pl-44 pr-44'>
+    <div className={styles.ArchitectureFont +' mt-36 text-5xl mb-12 '}>
+      Recipe Of The Day
+    </div>
+    <div className=' flex lg:flex-row sm:flex-col justify-between'>
+      <div className=' lg:w-2/5 sm:w-full'>
+        <div className=' text-3xl mb-3'>
+          Name
+        </div>
+        <div className=''>
+        It is a South Indian dish. It is a type of dosa and has its origin in the town of Udupi in Karnataka. It is made from rice, lentils, Urad dal, Chana dal, fenugreek, puffed rice, Toor dal, dry red chilli and served with potato curry, chutneys, and sambar....
         </div>
       </div>
+      <div>
+        <GlassCard></GlassCard>
+      </div>      
+    </div>
 
-      {/* <div className={styles.dataCards}>
-        <DataCard variation2 src={IMG} heading={`Dish 1`} subheading= "Phasellus lacinia sapien condimentum sem mollis, quis consequat sapien hendrerit."/>
-        <DataCard variation2 src={IMG} heading={`Dish 1`} subheading= "Phasellus lacinia sapien condimentum sem mollis, quis consequat sapien hendrerit."/>
-        <DataCard variation2 src={IMG} heading={`Dish 1`} subheading= "Phasellus lacinia sapien condimentum sem mollis, quis consequat sapien hendrerit."/>
-      </div> */}
-      {/* we will show this on signing up */}
+    <div className=' mt-16 mb-12'>
+        <div className={styles.ArchitectureFont +' text-5xl'}>
+        EXPLORE MORE
+        </div>
+        <div>
+        From continental to italian...
+        we got it all
+      </div>
+      </div>
+      
       <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     </div>
