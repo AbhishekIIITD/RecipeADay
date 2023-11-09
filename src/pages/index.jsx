@@ -6,11 +6,15 @@ import HeroHeading from '@/components/HeroHeading/HeroHeading.component'
 import GlassCard from '@/components/Glasscard/GlassCard.component'
 import IMG from "../assets/dummyARAD.png"
 import DataCard from '@/components/Glasscard/DataCard/DataCard.component'
+import Head from 'next/head'
 // import "../styles/globals.scss"
 import GetStarted from '@/components/Button/GetStartedButton/GetStarted.component'
 export default function Index() {
   return (
     <div>
+      {/* <Head>
+      <meta name="google-signin-client_id" content="263231929945-k2paolaf1o66jsgv08q1g93a7o987125.apps.googleusercontent.com" ></meta>
+      </Head> */}
       <div className={styles.index}>
         <div className={styles.parent}>
           <div className={styles.headSub}>
@@ -40,7 +44,10 @@ export default function Index() {
         <DataCard variation2 src={IMG} heading={`Dish 1`} subheading= "Phasellus lacinia sapien condimentum sem mollis, quis consequat sapien hendrerit."/>
       </div> */}
       {/* we will show this on signing up */}
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     </div>
+    
 
   )
 }

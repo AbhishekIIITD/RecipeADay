@@ -1,67 +1,39 @@
+"use client"
 import styles from '../../styles/Login.module.scss';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 // import logo from "../../assets/logo_blackbg.png";
 import Link from 'next/dist/client/link';
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify'; // Import react-toastify
+import { signIn, useSession } from 'next-auth/react';
+
 
 import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
 
 export default function Signup() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [Name, setName] = useState('');
+  
   const router = useRouter();
+  const session=useSession();
+  console.log(session);
+
+  
+  useEffect(() => {
+    if (session.status==='authenticated') {
+      handleSubmit(session.data)
+
+    } 
+  }, [session]);
+
 
   const handleGoogleSubmit=(e)=>{
-    //do the needful anna
-    gapi.load('auth2', async () => {
-      const auth2 = await gapi.auth2.init({
-        client_id: '263231929945-k2paolaf1o66jsgv08q1g93a7o987125.apps.googleusercontent.com', // Replace with your Google client ID
-      });
-  
-  
-      try {
-        const googleUser = await auth2.signIn();
-  
-        const id_token = googleUser.getAuthResponse().id_token;
-  
-        const response = await fetch('/api/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ id_token }),
-        });
-  
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data.message); 
-        } else {
-          
-          const errorData = await response.json();
-          console.error(errorData.error);
-        }
-      } catch (error) {
-        console.error('Error during Google Sign-In:', error);
-      }
-    });
+    signIn('google');
+    
+
   }
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (data) => {
 
     try {
       const response = await fetch('/api/signup', {
@@ -69,14 +41,23 @@ export default function Signup() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ Name, email, password }),
+        body: JSON.stringify({name:data.user.name,email:data.user.email}),
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         // Registration successful, you can redirect the user to a login page.
+        console.log(response)
         router.push({
           pathname: '/UserPersonalisation',
-          query: { user: Name, email: email },
+          query: { user: session.data.user.name, email: session.data.user.email },
+        });
+        console.log("registered")
+      }
+      else if(response.status===201){
+        console.log(response)
+        router.push({
+          pathname: '/User_dashboard',
+          query: { user: session.data.user.name, email: session.data.user.email },
         });
         console.log("registered")
       }
@@ -96,39 +77,16 @@ export default function Signup() {
     <div className={styles.parent}>
       <div className={styles.container}>
         <h2>RECIPEDIA</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="Name"
-            placeholder="Name"
-            value={Name}
-            onChange={handleNameChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-          <button type="submit">Sign Up</button>
+        <form>
+          
+          
           <Image
             className={styles.GoogleImage}
             src="/google.png"
             width={50}
             height={50}
             alt="Picture of the author"
-            onClick={handleGoogleSubmit}
+            onClick={()=>signIn("google")}
           />
           <Link className={styles.SignUpLink} href="/login">
             <p>Already Registered? Sign In</p>

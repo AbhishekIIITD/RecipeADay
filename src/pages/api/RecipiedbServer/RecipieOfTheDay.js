@@ -8,5 +8,7 @@ export default async function handler(req, res) {
       };      
     const response = await fetch("https://cosylab.iiitd.edu.in/api/recipeDB/recipeoftheday", requestOptions);
     const data = await response.json();
+
     res.json({ recipeoftheday: data});
+    return response
 }

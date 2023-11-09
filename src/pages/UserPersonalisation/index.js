@@ -39,7 +39,10 @@ export default function UserForm() {
 
       if (response.status === 201) {
         // Registration successful, you can redirect the user to a login page.
-        router.push('/login')
+        router.push({
+          pathname: '/User_dashboard',
+          query: { user: user, email: email },
+        });
         console.log("noted")
       }
      

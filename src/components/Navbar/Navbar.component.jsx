@@ -2,14 +2,15 @@ import styles from "./Navbar.module.scss";
 // import { useSession } from "next-auth/react";
 import Link from 'next/link'
 import Image from 'next/image'
-// import { signOut } from "next-auth/react";
 import proficeUserDefaut from "../../assets/profileUserDefault.png"
 import logo from "../../assets/logo.png";
 import { useRef } from "react";
 import { useOutsideAlerter } from "../../lib/customHooks";
 import Button from "../Button/Button";
+import { signOut, useSession } from "next-auth/react";
 export default function Navbar() {
     // const user = null;
+    const session=useSession();
     const userOptionsRef = useRef();
     const profileRef = useRef();
     const actionButtonRef = useRef();
@@ -29,9 +30,7 @@ export default function Navbar() {
     }
     useOutsideAlerter(profileRef, makeUserdropDownVanish)
     useOutsideAlerter(slideInmenuContainerRef, makeActiondropDownVanish)
-    // const { data: session, loading } = useSession();
-    // console.log(session);
-    const session = null;
+    
     const handleActionMenuClick = ()=>{
         actionButtonRef.current.classList.toggle(styles.menuOpened)
         slideInmenuRef.current.classList.toggle(styles.actionDDToggle)
@@ -75,15 +74,13 @@ export default function Navbar() {
             </div>
             <div ref={profileRef} className={styles.profilePicContainer}>
                     <div className={styles.profilePicContainer} onClick={handleProfileClick} >
-                        <Image src={proficeUserDefaut} alt={session ? session.user.name : "Login First"} srcSet=""  className={styles.profilePic}  />
+                        <Image src={proficeUserDefaut} alt={(session.status=='authenticated') ? session.data.user.name : "Login First"} srcSet=""  className={styles.profilePic}  />
                     </div>
                     <ul ref={userOptionsRef} className={`${styles.userOptions} ${styles.toggleOpacity}`}>
-                        {session && <>
-                            <li onClick={makeUserdropDownVanish}>Create New Post</li>
-                            <li onClick={makeUserdropDownVanish}>Preferences</li>
-                            <li onClick={makeUserdropDownVanish}>View profile</li>
-                            <Button className={styles.button} onClick={() => {  makeUserdropDownVanish() }} >Sign out</Button></>}
-                        {!session &&
+                        {(session.status=='authenticated') && <>
+                            
+                            <Button className={styles.signOutBtn} onClick={() => { signOut('google') }} >Sign out</Button></>}
+                        {!(session.status=='authenticated') &&
                            <>
                            <Link href="/login">
                                <li className={styles.dropdownLink} onClick={makeUserdropDownVanish}>Login</li>
