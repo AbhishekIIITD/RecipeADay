@@ -4,14 +4,16 @@
      max-width: 100%;
     }
     z-index: 0;
-  border: 1px solid #1e1e1e;
   border-radius: 15px;
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  
+  box-shadow: 0 0 1rem 0 rgba(67, 62, 62, 0.2);
   font-size: 2rem;
 //   height: 220px;
   overflow: hidden;
   position: relative;
-  max-width: 500px;
+  text-align: center;
+  width: 30rem;
+  height: 24rem;
 }
 .glasscard::before {
   backdrop-filter: saturate(180%) blur(10px);

@@ -77,11 +77,11 @@ export default function Signup() {
     <div className={styles.parent}>
       <div className={styles.container}>
         <h2>RECIPEDIA</h2>
-        <form>
+        <form className=''>
           
           
           <Image
-            className={styles.GoogleImage}
+            className={styles.GoogleImage +" translate-x-20"}
             src="/google.png"
             width={50}
             height={50}

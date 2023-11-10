@@ -85,7 +85,7 @@ export default function login() {
       <form onSubmit={handleSubmit}>
         
         <Image
-            className={styles.GoogleImage}
+            className={styles.GoogleImage +" translate-x-20"}
             src="/google.png"
             width={50}
             height={50}
