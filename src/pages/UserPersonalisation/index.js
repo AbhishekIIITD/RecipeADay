@@ -56,10 +56,10 @@ export default function UserForm() {
   };
 
   return (
-    <div className={styles.userFormContainer}>
-      <h1>User Information Form</h1>
+    <div className={styles.userFormContainer+" text-black mb-6 pb-6"}>
+      <h1 className={styles.ArchitectureFont+' text-white text-3xl'}>User Information Form</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="vegNonVeg">Veg/Non-veg:</label>
+        <label className=' text-white md-3' htmlFor="vegNonVeg">Veg/Non-veg:</label>
         <select
           id="vegNonVeg"
           name="vegNonVeg"
@@ -71,7 +71,7 @@ export default function UserForm() {
           <option value="nonvegetarian">Non-vegetarian</option>
         </select>
 
-        <label htmlFor="height">Height (in cm):</label>
+        <label className=' text-white md-3' htmlFor="height">Height (in cm):</label>
         <input
           type="number"
           id="height"
@@ -83,7 +83,7 @@ export default function UserForm() {
 
       
 
-        <label for="healthIssue">Select a Health Issue:</label>
+        <label className=' text-white md-3' for="healthIssue">Select a Health Issue:</label>
         <select id="healthIssues"
           name="healthIssues"
           value={formData.healthIssues}
@@ -111,7 +111,7 @@ export default function UserForm() {
 
 
         
-        <label htmlFor="weight">Weight (in kg):</label>
+        <label className=' text-white md-3' htmlFor="weight">Weight (in kg):</label>
         <input
           type="number"
           id="weight"
@@ -122,7 +122,7 @@ export default function UserForm() {
 
         
 
-        <label for="preferredCuisine">Select Your Preferred Cuisine:</label>
+        <label className=' text-white md-3' for="preferredCuisine">Select Your Preferred Cuisine:</label>
         <select type="text"
           id="cuisine"
           name="cuisine"
@@ -150,7 +150,7 @@ export default function UserForm() {
 
         
 
-        <input type="submit" value="Submit" />
+        <input className=' bg-[#3ea79d] hover:scale-105 rounded-md ' type="submit" value="Submit" />
       </form>
     </div>
   );
