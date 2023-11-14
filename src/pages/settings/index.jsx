@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from "../../styles/userPersonalisation.module.scss"
 import { useRouter } from 'next/dist/client/router';
 
-export default function UserForm() {
+export default function Settings() {
     const router = useRouter();
     const { user, email } = router.query;
 
@@ -28,7 +28,7 @@ export default function UserForm() {
         console.log(formData); // Log the formData to ensure it's captured on submit
 
         try {
-            const response = await fetch('/api/userform', {
+            const response = await fetch('/api/settings', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ export default function UserForm() {
                 // Assuming success means redirecting to a user dashboard
                 router.push({
                     pathname: '/User_dashboard',
-                    query: { user: user, email: email }
+                    query: { user: user, email: email },
                 });
             } else {
                 console.log('Error:', response.statusText);
