@@ -24,7 +24,7 @@ export default function Index() {
     <div className={styles.ArchitectureFont +' mt-36 text-5xl mb-12 '}>
       Recipe Of The Day
     </div>
-    <div className=' flex lg:flex-row sm:flex-col justify-between'>
+    <div className="flex md:flex-row justify-between">
       <div className=' lg:w-2/5 sm:w-full'>
         <div className=' text-3xl mb-3'>
           Name

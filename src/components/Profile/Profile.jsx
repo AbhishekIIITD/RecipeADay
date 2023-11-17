@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../styles/profile.module.scss'; 
 import { useRouter } from 'next/dist/client/router';
+import avatar from "../../../public/ProfileAvatar.png"
+import Image from 'next/image';
 
 const Profile = () => {
   const router = useRouter();
@@ -37,17 +39,32 @@ const Profile = () => {
   };
 
   return (
-    <div className={styles.profileContainer}>
-      <h2>User Profile</h2>
-      <div>
-        <p>Name: {userData.name}</p>
-        <p>Email: {email}</p>
-        <p>Cuisine: {userData.cuisine}</p>
-        <p>Health Issue: {userData.healthIssue}</p>
-        <p>Height: {userData.height}</p>
-        <p>Veg/Non-Veg: {userData.vegNonVeg}</p>
-        <p>Weight: {userData.weight}</p>
+    <div className={" flex flex-col justify-center align-middle text-center bg-white text-black"}>
+      <Image src={avatar} height={50} width={50} className=' ml-[37rem] mb-5 mt-4'>
+
+      </Image>
+      <div className=' mb-3'>
+      Name :  {userData.name}
       </div>
+      <div className=' mb-3'>
+      email :  {userData.email}
+      </div>
+      <div className=' mb-3'>
+      height :  {userData.height}
+      </div>
+      <div className=' mb-3'>
+      weight :  {userData.weight}
+      </div>
+      <div className=' mb-3'>
+      cuisine :  {userData.cuisine}
+      </div>
+      <div className=' mb-3'>
+      healthIssue :  {userData.healthIssue}
+      </div>
+      <div className=' mb-3'>
+      vegNonVeg :  {userData.vegNonVeg}
+      </div>
+      
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "../../styles/userPersonalisation.module.scss";
 import { useRouter } from "next/dist/client/router";
 
-export default function UserForm() {
+export default function Settings() {
   const router = useRouter();
   const { user, email } = router.query;
 
@@ -28,7 +28,7 @@ export default function UserForm() {
     console.log(formData); // Log the formData to ensure it's captured on submit
 
     try {
-      const response = await fetch("/api/userform", {
+      const response = await fetch("/api/settings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,8 +50,8 @@ export default function UserForm() {
     }
   };
 
-  return (<>
-    <div className={styles.userFormContainer + " text-black mt-40 mb-6 pb-6"}>
+  return (
+    <div className={styles.userFormContainer + " text-black mb-6 pb-6"}>
       <h1 className={styles.ArchitectureFont + " text-white text-3xl"}>
         {" "}
         User Information Form{" "}
@@ -179,7 +179,5 @@ export default function UserForm() {
         />
       </form>{" "}
     </div>
-  </>
-    
   );
 }
