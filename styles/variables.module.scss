@@ -1,0 +1,12 @@
+
+$--bg: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, #282a3633 21.7%);
+$--bg--color:#282a3633;
+$primary-color: #E8630A;
+$screen--small:960px;
+$screen--m-small:1264px;
+
+
+:export {
+    screenSmall: $screen--small;
+    screenMedSmall: $screen--m-small;
+}

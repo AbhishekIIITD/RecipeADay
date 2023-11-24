@@ -1,0 +1,45 @@
+/* UserForm.scss */
+
+.userFormContainer {
+    width: 70%; /* Adjust width as needed */
+    margin: 0 auto;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    select,input{
+        height: 2rem
+    };
+    input[type="text"],
+    input[type="number"],
+    select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    /* Style the submit button */
+    input[type="submit"] {
+        width: auto; /* Auto width based on content */
+        padding: 8px 16px; /* Adjust padding for button size */
+        font-size: 16px; /* Adjust font size */
+        margin-top:0.5rem;
+    }
+    
+  
+  }
+  
+  .ArchitectureFont{
+    font-family: 'Architects Daughter', cursive;
+  
+    font-family: 'Martel Sans', sans-serif;
+    font-weight:bolder;
+  
+  
+  }
+  /* Apply width: 100% to all input elements */
+  

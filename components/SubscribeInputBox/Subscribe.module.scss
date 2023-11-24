@@ -1,0 +1,73 @@
+@import "../../styles/utils.scss";
+.sub {
+  // min-width: 200px;
+  // width: 100%;
+  max-width: 700px;
+  height: 40px;
+  position: relative;
+  
+  input {   
+    border-radius: 10px;
+    background: transparent;
+    font-size: $font-small;
+    padding: 10px 20px;
+    // border: none;
+    width: 100%;
+    height: 100%;
+    border: 1px solid $color-light;
+    color: $color-light;
+    
+    
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      // border: none;
+      outline: none;
+      + span {
+        color: $color-dark;
+        background: $color-light;
+        
+        border-radius: 5px;
+        transform: translate(-5px, -20px) scale(0.75);
+        padding: 0 5px;
+      }
+    }
+
+    &:focus {
+      box-shadow: inset 0 0 10px 1px rgba($color-light, 0.5),
+        0 0 10px rgba($color-light, 0.2);
+       
+    }
+  }
+  span {
+    color: rgba($color-light,0.5);
+    
+    z-index: 2;
+    position: absolute;
+    top: 20%;
+    left: 10px;
+    transition: all 0.1s;
+  }
+}
+.wrong{
+  border: 1px solid red !important;
+  &:focus,
+  &:not(:placeholder-shown) {
+    // border: none;
+    outline: none;
+    + span {
+      color: $color-dark;
+      background: $color-light;
+      
+      border-radius: 5px;
+      transform: translate(-5px, -20px) scale(0.75);
+      padding: 0 5px;
+    }
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 10px 1px rgba(red, 0.5),
+      0 0 10px rgba(red, 0.2) !important;
+      
+  }
+}
