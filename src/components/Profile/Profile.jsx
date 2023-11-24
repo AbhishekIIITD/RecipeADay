@@ -58,9 +58,9 @@ const Profile = () => {
       <div className=' mb-3'>
       cuisine :  {userData.cuisine}
       </div>
-      <div className=' mb-3'>
+      {/* <div className=' mb-3'>
       healthIssue :  {userData.healthIssue}
-      </div>
+      </div> */}
       <div className=' mb-3'>
       vegNonVeg :  {userData.vegNonVeg}
       </div>
