@@ -9,25 +9,26 @@ async function fetchBearerToken() {
             "Content-Type": "application/x-www-form-urlencoded",
         },
         body: new URLSearchParams({
-            client_id: "app-ims",       
-            grant_type: "password",     
-            username: "monsoon23",      
+            client_id: "app-ims",
+            grant_type: "password",
+            username: "monsoon23",
             password: "cosylab_monsoon",
-            scope: "openid",            
+            scope: "openid",
         }),
     });
 
     if (!response.ok) {
-        return response; 
+        return response;
     }
-    
+
 
     const data = await response.json();
+    console.log(data)
     return data.access_token;
 }
 
 async function fetchRecipeOfTheDay() {
-    const bearerToken=fetchBearerToken();
+    const bearerToken = await fetchBearerToken();
     console.log(bearerToken)
     console.log("Fetching Recipe of the Day");
 
@@ -45,8 +46,8 @@ async function fetchRecipeOfTheDay() {
     }
 
     const data = await response.json();
+    console.log(data)
     return data;
 }
 
-export {fetchRecipeOfTheDay}
-
+export { fetchRecipeOfTheDay }
