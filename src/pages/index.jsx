@@ -3,19 +3,15 @@ import styles from "../styles/index.module.scss"
 import GlassCard from '@/components/Glasscard/GlassCard.component'
 import DataCard from '@/components/Glasscard/DataCard/DataCard.component'
 import Head from 'next/head'
-import { fetchRecipeOfTheDay } from './api/auth/recipedb'
+import { fetchRecipeOfTheDay,fetchBearerToken } from './api/auth/recipedb'
 // import "../styles/globals.scss"
 import { useRouter } from 'next/router'
 import Cors from 'micro-cors';
 const cors = Cors();
 
 
-async function RecipeOfTheDay(){
-  const recipe=await cors(fetchRecipeOfTheDay());
-  return recipe;
-}
 
-export default function Index() {
+export default function Index({recipe}) {
   const router =useRouter();
   const handleClick=()=>{
     
@@ -25,7 +21,7 @@ export default function Index() {
 
   }
   // const recipe=RecipeOfTheDay();
-  // console.log(recipe)
+  console.log(recipe)
 
   return (
     <div className=' pl-44 pr-44'>
@@ -70,3 +66,11 @@ export default function Index() {
 
 
 
+export const getStaticProps=async()=>{
+  const token=await fetchBearerToken();
+  const recipe=await fetchRecipeOfTheDay(token);
+  return{
+    props:{recipe:recipe}
+  }
+  
+}

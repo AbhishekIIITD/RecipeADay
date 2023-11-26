@@ -31,8 +31,8 @@ async function fetchBearerToken() {
     return data.access_token;
 }
 
-async function fetchRecipeOfTheDay() {
-    const bearerToken = await cors(fetchBearerToken);
+async function fetchRecipeOfTheDay(bearerToken) {
+    
     console.log(bearerToken)
     console.log("Fetching Recipe of the Day");
 
@@ -54,4 +54,4 @@ async function fetchRecipeOfTheDay() {
     return data;
 }
 
-export default fetchRecipeOfTheDay
+export {fetchBearerToken,fetchRecipeOfTheDay}
