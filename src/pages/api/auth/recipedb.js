@@ -1,3 +1,7 @@
+import Cors from 'micro-cors';
+
+const cors = Cors();
+
 async function fetchBearerToken() {
     console.log("Fetching Bearer Token");
 
@@ -28,7 +32,7 @@ async function fetchBearerToken() {
 }
 
 async function fetchRecipeOfTheDay() {
-    const bearerToken = await fetchBearerToken();
+    const bearerToken = await cors(fetchBearerToken);
     console.log(bearerToken)
     console.log("Fetching Recipe of the Day");
 
@@ -46,8 +50,8 @@ async function fetchRecipeOfTheDay() {
     }
 
     const data = await response.json();
-    console.log(data)
+    // console.log(data)
     return data;
 }
 
-export { fetchRecipeOfTheDay }
+export default fetchRecipeOfTheDay

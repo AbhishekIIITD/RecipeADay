@@ -1,18 +1,19 @@
 import React from 'react'
-import Button from '@/components/Button/Button'
-import Subscribe from '@/components/Subscribe/Subscribe'
 import styles from "../styles/index.module.scss"
-import HeroHeading from '@/components/HeroHeading/HeroHeading.component'
 import GlassCard from '@/components/Glasscard/GlassCard.component'
-import IMG from "../assets/dummyARAD.png"
 import DataCard from '@/components/Glasscard/DataCard/DataCard.component'
 import Head from 'next/head'
 import { fetchRecipeOfTheDay } from './api/auth/recipedb'
 // import "../styles/globals.scss"
-import GetStarted from '@/components/Button/GetStartedButton/GetStarted.component'
 import { useRouter } from 'next/router'
+import Cors from 'micro-cors';
+const cors = Cors();
 
 
+async function RecipeOfTheDay(){
+  const recipe=await cors(fetchRecipeOfTheDay());
+  return recipe;
+}
 
 export default function Index() {
   const router =useRouter();
@@ -23,8 +24,9 @@ export default function Index() {
     });
 
   }
-  const recipeoftheday=fetchRecipeOfTheDay();
-  console.log(recipeoftheday)
+  // const recipe=RecipeOfTheDay();
+  // console.log(recipe)
+
   return (
     <div className=' pl-44 pr-44'>
     <div className={styles.ArchitectureFont +' mt-36 text-5xl mb-12 '}>
@@ -68,17 +70,3 @@ export default function Index() {
 
 
 
-async function getSubscriberListFromMongodb() {
-  const res = await fetch("/api/MongodbServerAPIs/getSubscribers" , {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "GET",
-  });
-  const { error, data } = await res.json();
-  if (error) {
-    throw new Error(error);
-  }
-  console.log(data);
-  return res.status;
-}
