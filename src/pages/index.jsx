@@ -7,9 +7,13 @@ import GlassCard from '@/components/Glasscard/GlassCard.component'
 import IMG from "../assets/dummyARAD.png"
 import DataCard from '@/components/Glasscard/DataCard/DataCard.component'
 import Head from 'next/head'
+import { fetchRecipeOfTheDay } from './api/auth/recipedb'
 // import "../styles/globals.scss"
 import GetStarted from '@/components/Button/GetStartedButton/GetStarted.component'
 import { useRouter } from 'next/router'
+
+
+
 export default function Index() {
   const router =useRouter();
   const handleClick=()=>{
@@ -19,6 +23,8 @@ export default function Index() {
     });
 
   }
+  const recipeoftheday=fetchRecipeOfTheDay();
+  console.log(recipeoftheday)
   return (
     <div className=' pl-44 pr-44'>
     <div className={styles.ArchitectureFont +' mt-36 text-5xl mb-12 '}>
