@@ -6,7 +6,7 @@ export default function DataCard({heading,subheading ,src ,variation2}) {
     <div className={styles.datacard}>
         
         <div className={styles.imgContainer + " mb-5"}>
-          <Image src = {src} alt = {`subheading image`}/>
+          <img src={src}></img>
         </div>
 
     </div>

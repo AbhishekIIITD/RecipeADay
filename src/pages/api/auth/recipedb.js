@@ -27,13 +27,13 @@ async function fetchBearerToken() {
 
 
     const data = await response.json();
-    console.log(data)
+    //console.log(data)
     return data.access_token;
 }
 
 async function fetchRecipeOfTheDay(bearerToken) {
     
-    console.log(bearerToken)
+    //console.log(bearerToken)
     console.log("Fetching Recipe of the Day");
 
     const recipeUrl = "https://cosylab.iiitd.edu.in/api/recipeDB/recipeoftheday/";
