@@ -1,11 +1,35 @@
 import { useState } from "react";
 import styles from "../../styles/userPersonalisation.module.scss";
 import { useRouter } from "next/dist/client/router";
+import {data,Regions,subRegions,continents} from "../../assets/region"
 
 export default function Settings() {
   const router = useRouter();
   const { user, email } = router.query;
+  const [ContinentValue, setContinentValue] = useState('');
+  const [isContinentFocused,setContinentFocused]=useState(false);
 
+  const [options, setOptions] = useState([]);
+
+  
+
+  
+
+  const handleContinentChange = (e) => {
+    setContinentValue(e.target.value);
+    const filteredInputs=continents.filter(option=>option.includes(ContinentValue))
+    setOptions(filteredInputs)
+    //console.log(options)
+    handleChange(e)
+  };
+
+  const handleFocusContinent=(e)=>{
+    setContinentFocused(true)
+  }
+
+  const handleContinentBlur=(e)=>{
+    setContinentFocused(false)
+  }
   const [formData, setFormData] = useState({
     userEmail: email || "",
     vegNonVeg: "vegetarian",
@@ -14,6 +38,7 @@ export default function Settings() {
     weight: "",
     cuisine: "none",
   });
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -95,83 +120,30 @@ export default function Settings() {
           onChange={handleChange}
           required
         />
-        <label className=" text-white md-3" for="healthIssue">
+        <label className=" text-white md-3" for="AllergicTo">
           {" "}
-          Select a Health Issue:{" "}
+          Allergic to:{" "}
         </label>{" "}
         <select
-          id="healthIssues"
-          name="healthIssues"
-          value={formData.healthIssues}
+          id="AllergicTo"
+          name="AllergicTo"
+          value={formData.AllergicTo}
           onChange={handleChange}
           required
         >
-          <option value="None"> none </option>{" "}
-          <option value="Obesity"> Obesity </option>{" "}
-          <option value="Type 2 Diabetes"> Type 2 Diabetes </option>{" "}
-          <option value="Cardiovascular Disease">
-            {" "}
-            Cardiovascular Disease{" "}
-          </option>{" "}
-          <option value="Hypertension (High Blood Pressure)">
-            {" "}
-            Hypertension(High Blood Pressure){" "}
-          </option>{" "}
-          <option value="Cancer"> Cancer </option>{" "}
-          <option value="Osteoporosis"> Osteoporosis </option>{" "}
-          <option value="Food Allergies"> Food Allergies </option>{" "}
-          <option value="Celiac Disease"> Celiac Disease </option>{" "}
-          <option value="Irritable Bowel Syndrome (IBS)">
-            {" "}
-            Irritable Bowel Syndrome(IBS){" "}
-          </option>{" "}
-          <option value="Inflammatory Bowel Diseases (IBD)">
-            {" "}
-            Inflammatory Bowel Diseases(IBD){" "}
-          </option>{" "}
-          <option value="Gastroesophageal Reflux Disease (GERD)">
-            {" "}
-            Gastroesophageal Reflux Disease(GERD){" "}
-          </option>{" "}
-          <option value="Dental Health"> Dental Health </option>{" "}
-          <option value="Eating Disorders"> Eating Disorders </option>{" "}
-          <option value="Chronic Kidney Disease (CKD)">
-            {" "}
-            Chronic Kidney Disease(CKD){" "}
-          </option>{" "}
-          <option value="Food Intolerances"> Food Intolerances </option>{" "}
-          <option value="Autoimmune Diseases"> Autoimmune Diseases </option>{" "}
-          <option value="Mental Health"> Mental Health </option>{" "}
+          
         </select>
-        <label className=" text-white md-3" for="preferredCuisine">
+        <label className=" text-white md-3" for="Continent">
           {" "}
-          Select Your Preferred Cuisine:{" "}
+          Select Your Preferred Continent:{" "}
         </label>{" "}
-        <select
-          type="text"
-          id="cuisine"
-          name="cuisine"
-          value={formData.cuisine}
-          onChange={handleChange}
-        >
-          <option value="none"> none </option>{" "}
-          <option value="American"> American </option>{" "}
-          <option value="Italian"> Italian </option>{" "}
-          <option value="Mexican"> Mexican </option>{" "}
-          <option value="Chinese"> Chinese </option>{" "}
-          <option value="Indian"> Indian </option>{" "}
-          <option value="Japanese"> Japanese </option>{" "}
-          <option value="Thai"> Thai </option>{" "}
-          <option value="Mediterranean"> Mediterranean </option>{" "}
-          <option value="French"> French </option>{" "}
-          <option value="Spanish"> Spanish </option>{" "}
-          <option value="Greek"> Greek </option>{" "}
-          <option value="Korean"> Korean </option>{" "}
-          <option value="Middle Eastern"> Middle Eastern </option>{" "}
-          <option value="Vegetarian"> Vegetarian </option>{" "}
-          <option value="Vegan"> Vegan </option>{" "}
-          <option value="Other"> Other </option>{" "}
-        </select>
+        <input className="" type="text" name="Continent" onChange={handleContinentChange} onFocus={handleFocusContinent} onBlur={handleContinentBlur}/>
+        {(isContinentFocused)&&(<ul className=" text-white">
+        {options.map((option) => (
+          <li>{option}</li>
+          
+        ))}
+      </ul>)}
         <input
           className="bg-[#3ea79d] hover:scale-105 rounded-md"
           type="submit"

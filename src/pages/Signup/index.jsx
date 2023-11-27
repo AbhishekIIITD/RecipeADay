@@ -41,7 +41,7 @@ export default function Signup() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({name:data.user.name,email:data.user.email}),
+        body: JSON.stringify({name:data.user.name,email:data.user.email,Image:data.user.image}),
       });
 
       if (response.status === 200) {
@@ -49,7 +49,7 @@ export default function Signup() {
         console.log(response)
         router.push({
           pathname: '/UserPersonalisation',
-          query: { user: session.data.user.name, email: session.data.user.email },
+          query: { user: session.data.user.name, email: session.data.user.email,Image:session.data.user.image },
         });
         console.log("registered")
       }
@@ -57,7 +57,7 @@ export default function Signup() {
         console.log(response)
         router.push({
           pathname: '/User_dashboard',
-          query: { user: session.data.user.name, email: session.data.user.email },
+          query: { user: session.data.user.name, email: session.data.user.email ,Image:session.data.user.image },
         });
         console.log("registered")
       }
