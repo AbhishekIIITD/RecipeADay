@@ -19,6 +19,7 @@ export default async function handler(req, res) {
                         healthIssues,
                         weight,
                         cuisine,
+                        Age
                     },
                 });
                 res.status(200).json({ message: 'User details updated' });

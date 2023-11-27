@@ -16,6 +16,7 @@ const Profile = () => {
     height: "",
     vegNonVeg: "",
     weight: "",
+    Age: "",
   });
 
   useEffect(() => {
@@ -60,7 +61,7 @@ const Profile = () => {
           </div>
           <div className=" mt-2 mb-2 flex flex-col ml-4 translate-y-3">
             <div className=" text-xl">Age</div>
-            <div className=" text-[#D7D7D7] text-sm">Null</div>
+            <div className=" text-[#D7D7D7] text-sm">{userData.Age}</div>
           </div>
 
           <div className=" mt-2 mb-2 flex flex-row">

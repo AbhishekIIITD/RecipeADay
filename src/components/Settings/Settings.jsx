@@ -37,6 +37,7 @@ export default function Settings() {
     healthIssues: "none",
     weight: "",
     cuisine: "none",
+    Age: "",
   });
 
 
@@ -96,6 +97,18 @@ export default function Settings() {
           <option value="vegetarian"> Vegetarian </option>{" "}
           <option value="nonvegetarian"> Non - vegetarian </option>{" "}
         </select>
+        <label className="text-white md-3" htmlFor="Age">
+          {" "}
+          Age:{" "}
+        </label>{" "}
+        <input
+          type="number"
+          id="Age"
+          name="Age"
+          value={formData.Age}
+          onChange={handleChange}
+          required
+        />
         <label className="text-white md-3" htmlFor="height">
           {" "}
           Height( in cm):{" "}
@@ -120,6 +133,7 @@ export default function Settings() {
           onChange={handleChange}
           required
         />
+
         <label className=" text-white md-3" for="AllergicTo">
           {" "}
           Allergic to:{" "}
