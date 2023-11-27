@@ -4,6 +4,7 @@ import GlassCard from "@/components/Glasscard/GlassCard.component";
 import DataCard from "@/components/Glasscard/DataCard/DataCard.component";
 import Head from "next/head";
 import { fetchRecipeOfTheDay, fetchBearerToken } from "./api/auth/recipedb";
+import RecipeCard from "@/components/RecipeCard/RecipeCard";
 // import "../styles/globals.scss"
 import { useRouter } from "next/router";
 import Cors from "micro-cors";
@@ -20,12 +21,12 @@ export default function Index({ recipe }) {
   //console.log(recipe)
 
   return (
-    <div className=" pl-44 pr-44">
+    <div className=" md:pl-44 md:pr-44">
       <div className={styles.ArchitectureFont + " mt-36 text-5xl mb-12 "}>
         Recipe Of The Day
       </div>
-      <div className="flex md:flex-row justify-between">
-        <div className=" lg:w-2/5 sm:w-full">
+      <div className="flex lg:flex-row sm:flex-col justify-between">
+        <div className=" sm:w-full lg:w-2/5 sm:w-full">
           <div className=" text-3xl mb-3">{recipe.recipe_title}</div>
           <div className=" mb-12">
             It is a South Indian dish. It is a type of dosa and has its origin
@@ -54,6 +55,11 @@ export default function Index({ recipe }) {
           EXPLORE MORE
         </div>
         <div>From continental to italian... we got it all</div>
+        <div className=" flex lg:flex-row sm:flex-col mt-10">
+          <RecipeCard recipe={recipe}></RecipeCard>
+          <RecipeCard recipe={recipe}></RecipeCard>
+          <RecipeCard recipe={recipe}></RecipeCard>
+        </div>
       </div>
 
       <script src="https://apis.google.com/js/platform.js" async defer></script>

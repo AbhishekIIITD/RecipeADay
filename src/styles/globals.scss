@@ -3,7 +3,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
+@import url('https://fonts.googleapis.com/css2?family=Ephesis&family=Martel+Sans:wght@200&display=swap');
 
 html,
 body {
@@ -81,5 +81,14 @@ a {
 
 .Cuisinecard-body {
   padding: 1.2em;
+}
+
+.Ephsis{
+  font-family: 'Ephesis', cursive;
+  font-family: 'Martel Sans', sans-serif;
+}
+
+.hoverChange{
+  
 }
 

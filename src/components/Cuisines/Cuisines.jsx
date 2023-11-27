@@ -1,22 +1,15 @@
 import React, { useState } from "react";
+import { fetchBearerToken,fetchRecipeOfTheDay } from "@/pages/api/auth/recipedb";
 
 
-
-export default function Cuisines() {
-    const [recipe, setRecipe] = useState(null);
+export default function Cuisines({ recipe}) {
     
 
-        fetchData();
-        async function fetchData() {
-            const bearerToken = await fetchBearerToken();
-            const recipeData = await fetchRecipeOfTheDay(bearerToken);
-            console.log(recipeData);
-            setRecipe(recipeData);
-            console.log(recipeData.calories)
+        
 
     return (
         <div>
-            {recipeData ? (
+            {recipe ? (
                 <>
                     <h2>{recipeData.recipe_title}</h2>
                     <img src={recipeData.img_url} alt={recipeData.recipe_title} style={{ maxWidth: "100%" }} />
@@ -65,52 +58,13 @@ export default function Cuisines() {
         </div>
     );
 }
-}
 
-async function fetchBearerToken() {
-    console.log("Fetching Bearer Token");
 
-    const tokenUrl = "https://cosylab.iiitd.edu.in/api/auth/realms/bootadmin/protocol/openid-connect/token";
-
-    const response = await fetch(tokenUrl, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-            client_id: "app-ims",       
-            grant_type: "password",     
-            username: "monsoon23",      
-            password: "cosylab_monsoon",
-            scope: "openid",            
-        }),
-    });
-
-    if (!response.ok) {
-        return response; 
-    }
-    
-
-    const data = await response.json();
-    return data.access_token;
-}
-
-async function fetchRecipeOfTheDay(bearerToken) {
-    console.log("Fetching Recipe of the Day");
-
-    const recipeUrl = "https://cosylab.iiitd.edu.in/api/recipeDB/recipeoftheday/";
-
-    const response = await fetch(recipeUrl, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${bearerToken}`,
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error("Failed to fetch recipe of the day");
-    }
-
-    const data = await response.json();
-    return data;
-}
+export const getStaticProps = async () => {
+    const token = await fetchBearerToken();
+    const recipe = await fetchRecipeOfTheDay(token);
+    return {
+      props: { recipe: recipe },
+    };
+  };
+  
