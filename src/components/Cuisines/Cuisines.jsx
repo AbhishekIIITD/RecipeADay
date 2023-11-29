@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { fetchBearerToken, fetchRecipeOfTheDay } from "@/pages/api/auth/recipedb";
 
 export default function Cuisines({ recipe }) {
     console.log(recipe);
-
+    
     return (
         <div>
             {recipe ? (
@@ -55,13 +54,3 @@ export default function Cuisines({ recipe }) {
         </div>
     );
 }
-
-export const getStaticProps = async () => {
-    const token = await fetchBearerToken();
-    const recipe = await fetchRecipeOfTheDay(token);
-    console.log("lol");
-
-    return {
-        props: { recipe: recipe },
-    };
-};

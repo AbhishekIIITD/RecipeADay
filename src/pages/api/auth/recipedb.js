@@ -32,7 +32,7 @@ async function fetchBearerToken() {
 }
 
 async function fetchRecipeOfTheDay(bearerToken) {
-    
+
     //console.log(bearerToken)
     console.log("Fetching Recipe of the Day");
 
@@ -54,4 +54,39 @@ async function fetchRecipeOfTheDay(bearerToken) {
     return data;
 }
 
-export {fetchBearerToken,fetchRecipeOfTheDay}
+
+async function fetchRecipeByID(bearerToken, id) {
+    console.log("Fetching Recipe by ID");
+
+    const recipeUrl = `https://cosylab.iiitd.edu.in/api/recipeDB/recipeInfo/${id}`;
+
+    try {
+        const response = await fetch(recipeUrl, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${bearerToken}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch recipe by ID");
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching recipe by ID:", error.message);
+        throw error;
+    }
+}
+
+// Example usage:
+// const token = "yourBearerToken";
+// const recipeID = "yourRecipeID";
+// fetchRecipeByID(token, recipeID)
+//     .then(data => console.log(data))
+//     .catch(error => console.error(error));
+
+
+
+export { fetchBearerToken, fetchRecipeOfTheDay, fetchRecipeByID }

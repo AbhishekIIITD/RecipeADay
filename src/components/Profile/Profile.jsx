@@ -46,6 +46,7 @@ const Profile = () => {
     weight: "",
     favourite_regions: [],
     allergies: [],
+    Age: "",
   });
 
   const handleFavRegionChange = (e) => {
