@@ -36,7 +36,8 @@ export default function Settings() {
     height: "",
     healthIssues: "none",
     weight: "",
-    cuisine: "none",
+    favourite_regions:[],
+    AllergicTo:[],    
   });
 
 

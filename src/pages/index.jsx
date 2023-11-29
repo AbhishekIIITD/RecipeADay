@@ -18,7 +18,7 @@ export default function Index({ recipe }) {
     });
   };
   // const recipe=RecipeOfTheDay();
-  //console.log(recipe)
+  console.log(recipe)
 
   return (
     <div className=" md:pl-44 md:pr-44">
@@ -29,10 +29,8 @@ export default function Index({ recipe }) {
         <div className=" sm:w-full lg:w-2/5 sm:w-full">
           <div className=" text-3xl mb-3">{recipe.recipe_title}</div>
           <div className=" mb-12">
-            It is a South Indian dish. It is a type of dosa and has its origin
-            in the town of Udupi in Karnataka. It is made from rice, lentils,
-            Urad dal, Chana dal, fenugreek, puffed rice, Toor dal, dry red
-            chilli and served with potato curry, chutneys, and sambar....
+            It is a {recipe.continent} dish from {recipe.region}. It contains {recipe.protein} gram of protein
+            and have {recipe.energykcal} kcal.You can prepare this in {recipe.total_time} minutes and enjoy!
           </div>
           <div>
             <button

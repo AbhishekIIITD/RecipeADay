@@ -41,26 +41,19 @@ export default function Signup() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({name:data.user.name,email:data.user.email,Image:data.user.image}),
+        body: JSON.stringify({name:data.user.name,email:data.user.email,userImage:data.user.image}),
       });
 
-      if (response.status === 200) {
+      if (response.status === 200||response.status===201) {
         // Registration successful, you can redirect the user to a login page.
         console.log(response)
         router.push({
-          pathname: '/UserPersonalisation',
-          query: { user: session.data.user.name, email: session.data.user.email,Image:session.data.user.image },
-        });
-        console.log("registered")
-      }
-      else if(response.status===201){
-        console.log(response)
-        router.push({
           pathname: '/User_dashboard',
-          query: { user: session.data.user.name, email: session.data.user.email ,Image:session.data.user.image },
+          query: { user: session.data.user.name, email: session.data.user.email,userImage:session.data.user.image },
         });
         console.log("registered")
       }
+      
       else if(response.status==400){
         router.push("/login")
       } 

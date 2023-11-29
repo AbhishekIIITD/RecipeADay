@@ -62,7 +62,7 @@ export default function login() {
         console.log(response)
         router.push({
           pathname: '/User_dashboard',
-          query: { user: session.data.user.name, email: session.data.user.email ,Image:session.data.user.image},
+          query: { user: session.data.user.name, email: session.data.user.email ,userImage:session.data.user.image},
         });
         console.log("registered")
       }
