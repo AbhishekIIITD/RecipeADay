@@ -18,7 +18,7 @@ export default function Index({ recipe }) {
     });
   };
   // const recipe=RecipeOfTheDay();
-  console.log(recipe)
+  //console.log(recipe)
 
   return (
     <div className=" md:pl-44 md:pr-44">

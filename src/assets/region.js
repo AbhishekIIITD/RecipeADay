@@ -297,5 +297,28 @@ const subRegions = [
   "Canadian",
   "US",
 ];
+const Ingredients = [
+  "Vegetable",
+  "Meat",
+  "Dish",
+  "Fruit",
+  "Dairy",
+  "Condiment",
+  "Spice",
+  "Additive",
+  "Cereal",
+  "Bakery",
+  "BeverageAlcoholic",
+  "Herb",
+  "Legume",
+  "Fish",
+  "Beverage",
+  "PlantDerivative",
+  "Seafood",
+  "NutsandSeeds",
+  "Plant",
+  "Maize",
+  "Fungi"
+]
 
-export {data,continents,Regions,subRegions}
+export { data, continents, Regions, subRegions,Ingredients };

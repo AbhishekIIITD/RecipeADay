@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         try {
             const {
-                userEmail,
+                email,
                 vegNonVeg,
                 height,
                 healthIssues,
@@ -16,25 +16,20 @@ export default async function handler(req, res) {
             const client = await connectToDatabase();
             const collection = client.collection('User');
 
-            const user = await collection.findOne({ email: userEmail });
+            const user = await collection.findOne({ email: email });
 
             if (user) {
                 console.log("Found");
+                //console.log(favourite_regions)
 
-                const existingFavouriteRegions = user.favourite_regions || [];
-                const existingAllergicTo = user.AllergicTo || [];
-
-                const updatedFavouriteRegions = [...existingFavouriteRegions, ...favourite_regions];
-                const updatedAllergicTo = [...existingAllergicTo, ...AllergicTo];
-
-                await collection.updateOne({ email: userEmail }, {
+                await collection.updateOne({ email: email }, {
                     $set: {
                         vegNonVeg,
                         height,
                         healthIssues,
                         weight,
-                        favourite_regions: updatedFavouriteRegions,
-                        AllergicTo: updatedAllergicTo,
+                        favourite_regions,
+                        AllergicTo,
                     },
                 });
 

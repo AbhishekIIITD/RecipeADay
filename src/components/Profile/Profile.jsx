@@ -5,19 +5,30 @@ import avatar from "../../../public/ProfileAvatar.png";
 import Image from "next/image";
 import settingsPng from "../../assets/cogwheel.png";
 import correct from "../../assets/correct.png";
-import { Regions } from "@/assets/region";
+import { Regions, Ingredients } from "@/assets/region";
 const Profile = () => {
   const router = useRouter();
+
   //console.log(Regions)
-  const { email, name, userImage } = router.query;
+  const { email, user, userImage } = router.query;
   // Retrieve email from the query parameters
   //console.log(router.query)
   const [changeHeight, setChangeHeight] = useState(false);
   const [changeWeight, setChangeWeight] = useState(false);
   const [FavRegion, setFavRegion] = useState();
+  const [Allergy, setAllergy] = useState();
   const [HeightValue, setHeightValue] = useState(0);
   const [WeightValue, setWeightValue] = useState(0);
   const [isAddClicked, setisAddClicked] = useState(false);
+  const [isAdd2Clicked, setisAdd2Clicked] = useState(false);
+  const [isVeg, setIsVeg] = useState(true);
+
+  const handleSliderChange = () => {
+    setIsVeg(isVeg);
+    userData.vegNonVeg = !isVeg ? "vegetarian" : "non-vegetarian";
+    handleSubmit();
+    console.log(userData);
+  };
 
   function handleChangeHeight() {
     handleSubmit();
@@ -28,9 +39,12 @@ const Profile = () => {
     setChangeWeight((prevState) => !prevState);
   }
   function handleisAddClicked() {
-    setisAddClicked(true);
+    isAddClicked ? setisAddClicked(false) : setisAddClicked(true);
   }
 
+  function handleisAdd2Clicked() {
+    isAdd2Clicked ? setisAdd2Clicked(false) : setisAdd2Clicked(true);
+  }
   // function handleHeightValue(e) {
   //   setHeightValue(e.target.vaue);
   // }
@@ -39,42 +53,94 @@ const Profile = () => {
   // }
 
   const [userData, setUserData] = useState({
-    name: name,
+    name: user,
     email: email,
     height: "",
     vegNonVeg: "",
     weight: "",
     favourite_regions: [],
-    allergies: [],
+    AllergicTo: [],
     Age: "",
   });
 
   const handleFavRegionChange = (e) => {
-    const { value } = e.target.value;
+    //console.log(userData)
+    const { value } = e.target;
+    setFavRegion(value);
     var PrevFavRegion;
     if (!userData.hasOwnProperty("favourite_regions")) {
       PrevFavRegion = [];
       PrevFavRegion.push(value);
       setUserData((prev) => ({
         ...prev,
-        favourite_regions: PrevFavRegion
+        favourite_regions: PrevFavRegion,
       }));
-      console.log(userData)
+      //console.log(userData)
     } else {
-      PrevFavRegion=userData.favourite_regions;
+      PrevFavRegion = userData.favourite_regions;
       PrevFavRegion.push(value);
 
       setUserData((prev) => ({
         ...prev,
-        [favourite_regions]: PrevFavRegion,
+        ["favourite_regions"]: PrevFavRegion,
       }));
-      console.log(userData)
+      //console.log(userData)
     }
     setisAddClicked(false);
-    
+
     handleSubmit();
   };
 
+  const handleAllergicToChange = (e) => {
+    console.log(userData);
+    const { value } = e.target;
+    setAllergy(value);
+    var PrevAllergicTo;
+    if (
+      !userData.hasOwnProperty("AllergicTo") ||
+      (userData.hasOwnProperty("AllergicTo") && userData.AllergicTo == null)
+    ) {
+      PrevAllergicTo = [];
+      PrevAllergicTo.push(value);
+      setUserData((prev) => ({
+        ...prev,
+        AllergicTo: PrevAllergicTo,
+      }));
+      //console.log(userData)
+    } else {
+      PrevAllergicTo = userData.AllergicTo;
+      PrevAllergicTo.push(value);
+
+      setUserData((prev) => ({
+        ...prev,
+        ["AllergicTo"]: PrevAllergicTo,
+      }));
+      //console.log(userData)
+    }
+    setisAdd2Clicked(false);
+
+    handleSubmit();
+  };
+
+  const DeleteFavRegion = (curr) => {
+    const newFavRegion = userData.favourite_regions.filter(
+      (item) => item !== curr
+    );
+    setUserData((prev) => ({
+      ...prev,
+      favourite_regions: newFavRegion,
+    }));
+    handleSubmit();
+  };
+
+  const DeleteAllergy = (curr) => {
+    const newAllergy = userData.AllergicTo.filter((item) => item !== curr);
+    setUserData((prev) => ({
+      ...prev,
+      AllergicTo: newAllergy,
+    }));
+    handleSubmit();
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData((prevFormData) => ({
@@ -128,8 +194,8 @@ const Profile = () => {
   return (
     <div className={" h-screen w-full pl-40 pr-20 pt-12 rounded-3xl border-2 "}>
       <div className=" text-4xl font-bold">My Profile</div>
-      <div className=" flex flex-row mt-4 ">
-        <div className=" flex flex-col w-1/3">
+      <div className=" flex sm:flex-col lg:flex-row mt-4 ">
+        <div className=" flex flex-col lg:w-1/3">
           <div className=" mt-2 mb-2 flex flex-row">
             <img
               className=" h-20 w-20 rounded-full"
@@ -148,7 +214,7 @@ const Profile = () => {
             </div>
           </div>
           <div className=" mt-2 mb-2 flex flex-col ml-4 translate-y-3">
-            <div className=" text-xl">Email</div>
+            <div className=" text-xl">email</div>
             <div className=" text-[#D7D7D7] text-sm border w-4/5 rounded-xl p-1">
               {userData.email}
             </div>
@@ -178,7 +244,7 @@ const Profile = () => {
               ) : (
                 <div className=" flex flex-row w-fit">
                   <input
-                    className=" w-1/3 bg-black border rounded-xl"
+                    className=" lg:w-1/3 bg-black border rounded-xl"
                     type="text"
                     value={userData.height}
                     onChange={handleChange}
@@ -231,16 +297,42 @@ const Profile = () => {
               )}
             </div>
           </div>
+          <div
+              className={
+                styles.sliderContainer +
+                " flex flex-row w-fit translate-x-4 mt-4"
+              }
+            >
+              <div className={styles.sliderLabel + " text-l"}>Non-Veg</div>
+              <input
+                type="checkbox"
+                checked={isVeg}
+                onChange={handleSliderChange}
+                className={styles.slider}
+                id="vegSlider"
+              />
+            </div>
         </div>
-        <div className=" flex flex-col w-2/3">
-          <div className=" w-3/5 h-2/4 rounded-2xl p-3 bg-[#4C5B67] border-2">
+
+        <div className=" flex flex-col lg:w-2/3">
+          <div className=" lg:w-3/5 lg:h-2/4 rounded-2xl p-3 bg-[#4C5B67] border-2">
             <div className=" text-2xl">Favourite Regions</div>
-            {userData.favourite_regions &&
-              userData.favourite_regions.map((curr) => {
-                <div className=" h-1/6 ">{curr}</div>;
+            {userData.favourite_regions != undefined &&
+              userData.favourite_regions.map((curr, index) => {
+                return (
+                  <div className=" rounded-2xl h-1/6 border w-fit pl-3 pr-3 inline-block m-1">
+                    {curr}{" "}
+                    <button
+                      className=" font-bold text-red-600"
+                      onClick={() => DeleteFavRegion(curr)}
+                    >
+                      x
+                    </button>
+                  </div>
+                );
               })}
             <div
-              className=" rounded-2xl h-1/6 border w-fit pl-3 pr-3"
+              className=" rounded-2xl h-1/6 border w-fit pl-3 pr-3 inline-block bg-[#3ea79d]"
               onClick={handleisAddClicked}
             >
               add +
@@ -252,23 +344,55 @@ const Profile = () => {
                 className=" bg-black"
               >
                 <option value="">Select an option</option>
-                {Regions.map((value) => (
-                  <option key={value} value={value}>
+                {Regions.map((value, index) => (
+                  <option key={index} value={value}>
                     {value}
                   </option>
                 ))}
               </select>
             )}
           </div>
-          <div className=" w-3/5 h-2/4 rounded-2xl p-3 bg-[#4C5B67] mt-2 border-2">
+          <div className=" lg:w-3/5 lg:h-2/4 rounded-2xl p-3 bg-[#4C5B67] mt-2 border-2">
             <div className=" text-2xl">Allergic Ingredients</div>
-            {userData.favourite_regions &&
-              userData.favourite_regions.map((curr) => {
-                <div className=" h-1/6 ">{curr}</div>;
+            {userData.AllergicTo != undefined &&
+              userData.AllergicTo.map((curr, index) => {
+                {
+                  /* {
+                  console.log("yay");
+                } */
+                }
+                return (
+                  <div className=" rounded-2xl h-1/6 border w-fit pl-3 pr-3 inline-block m-1">
+                    {curr}{" "}
+                    <button
+                      className=" font-bold text-red-600"
+                      onClick={() => DeleteAllergy(curr)}
+                    >
+                      x
+                    </button>
+                  </div>
+                );
               })}
-            <div className=" rounded-2xl h-1/6 border w-fit pl-3 pr-3">
+            <div
+              className=" rounded-2xl h-1/6 border w-fit pl-3 pr-3 bg-[#3ea79d]"
+              onClick={handleisAdd2Clicked}
+            >
               add +
             </div>
+            {isAdd2Clicked && (
+              <select
+                value={Allergy}
+                onChange={handleAllergicToChange}
+                className=" bg-black"
+              >
+                <option value="">Select an option</option>
+                {Ingredients.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
         </div>
       </div>
