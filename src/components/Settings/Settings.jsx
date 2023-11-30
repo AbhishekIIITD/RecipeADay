@@ -145,7 +145,6 @@ export default function Settings() {
           onChange={handleChange}
           required
         >
-          
         </select>
         <label className=" text-white md-3" for="Continent">
           {" "}
