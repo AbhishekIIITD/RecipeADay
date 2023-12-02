@@ -8,26 +8,3 @@
   scale: 1.1;
 }
 
-
-.slider-container {
-  display: flex;
-  align-items: center;
-}
-
-.slider-label {
-  margin-right: 10px;
-}
-
-.slider {
-  -webkit-appearance: none;
-  width: 50px;
-  height: 25px;
-  border-radius: 25px;
-  background: #e74c3c; /* Non-veg color (red) */
-  outline: none;
-  transition: background 0.3s;
-}
-
-.slider:checked {
-  background: #2ecc71; /* Veg color (green) */
-}

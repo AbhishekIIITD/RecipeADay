@@ -27,33 +27,7 @@ export default function Dashboard() {
     }
   }, [session, router]);
 
-  const fetchUserRecipieID = async (email) => {
-    try {
-      const response = await fetch(`/api/getUserHistory?email=${email}`);
-      if (response.ok) {
-        const data = await response.json();
-
-        // Assuming data is an array of recipe IDs
-        const token = await fetchBearerToken();
-        const recipies_Array = [];
-        for (let i = 0; i < data.length; i++) {
-          try {
-            const recipe = await fetchRecipeByID(token, data[i]);
-            console.log(recipe);
-            recipies_Array.push(recipe);
-          } catch (error) {
-            console.error(`Error fetching recipe with ID ${data[i]}:`, error);
-          }
-        }
-        return recipies_Array;
-      } else {
-        throw new Error("Failed to fetch user profile");
-      }
-    } catch (error) {
-      console.error("Error fetching user profile:", error);
-    }
-  };
-
+  
 
   const switchComponent = (componentName) => {
     setActiveComponent(componentName);
@@ -90,16 +64,63 @@ export default function Dashboard() {
       </div>{" "}
       <div className={styles.dashboardContent}>
         {" "}
-        {activeComponent === "cuisines" && <Cuisines recipe={recipe} />}{" "}
+        {activeComponent === "cuisines" && <Cuisines email={email}/>}{" "}
         {activeComponent === "profile" && <Profile />}{" "}
       </div>{" "}
     </div>
   );
 }
 
-// export const getStaticProps = async () => {
-//   recipies_Array = fetchUserRecipieID(email);
-//   return {
-//     props: { recipies_Array: recipies_Array },
-//   };
-// };
+
+export async function getServerSideProps(context) {
+  //const email = context.params.email;
+  const {query}=context;
+  //console.log(query)
+
+  const fetchUserRecipeID = async (email) => {
+    try {
+      const response = await fetch('/api/getUserHistory', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email:email}),
+      });
+      if (response.ok) {
+        const data = await response.json();
+
+        const token = await fetchBearerToken();
+        const recipesArray = [];
+
+        for (let i = 0; i < data.length; i++) {
+          try {
+            const recipeResponse = await fetchRecipeByID(token, data[i]);
+            const recipe = await recipeResponse.json();
+            console.log(recipe);
+            recipesArray.push(recipe);
+          } catch (error) {
+            console.error(`Error fetching recipe with ID ${data[i]}:`, error);
+          }
+        }
+
+        return recipesArray;
+      } else {
+        throw new Error("Failed to fetch user profile");
+      }
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+    }
+  };
+
+  // Ensure you await the result of the asynchronous function
+  var recipeHistory = await fetchUserRecipeID(query.email);
+  if(recipeHistory==undefined){
+    recipeHistory=[]
+  }
+
+  return {
+    props: {
+      recipeHistory: recipeHistory,
+    },
+  };
+}
