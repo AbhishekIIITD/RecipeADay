@@ -24,8 +24,8 @@ const Profile = () => {
   const [isVeg, setIsVeg] = useState(true);
 
   const handleSliderChange = () => {
-    setIsVeg(isVeg);
-    userData.vegNonVeg = !isVeg ? "vegetarian" : "non-vegetarian";
+    setIsVeg(!isVeg);
+    userData.vegNonVeg = (!isVeg) ? ("vegetarian") : ("non-vegetarian");
     handleSubmit();
     console.log(userData);
   };
@@ -179,11 +179,10 @@ const Profile = () => {
 
   const fetchUserData = async (email) => {
     try {
-      const response = await fetch(`/api/getUserHistory?email=${email}`); // Pass email as a query parameter
+      const response = await fetch(`/api/getUserProfile?email=${email}`); // Pass email as a query parameter
       if (response.ok) {
         const data = await response.json();
-        console.log(data)
-        // setUserData(data);
+        setUserData(data);
       } else {
         throw new Error("Failed to fetch user profile");
       }
