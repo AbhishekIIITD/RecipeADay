@@ -1,17 +1,14 @@
 import { connectToDatabase } from './mongodb.mjs';
 
 export default async function handler(req, res) {
-    //console.log(chlrha)
     if (req.method === 'GET') {
-        console.log("chlrha")
         try {
-            const {email} = req.body; // Retrieve email from query parameters
-            //console.log(query)
+            const userEmail = req.query.email; // Retrieve email from query parameters
 
             const client = await connectToDatabase();
             const collection = client.collection('User'); // Check your actual collection name
 
-            const user = await collection.findOne({ email: email });
+            const user = await collection.findOne({ email: userEmail });
 
             if (user) {
                 res.status(200).json(user.last_recipe_id);
