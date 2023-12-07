@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  
+  experimental: {
+    
+  },
   postcss: (webpack) => {
     return [
       require('tailwindcss'),
