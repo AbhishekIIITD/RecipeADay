@@ -1,0 +1,24 @@
+/* components/CustomCursor.module.css */
+.cursor {
+    position: fixed;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, #ffffff 0%, #ffffff 70%, transparent 70%, transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease-out;
+    z-index: 9999;
+    box-shadow: 0 0 10px 3px #ffffff; /* Initial glowing effect */
+  }
+  
+  .cursor.active {
+    box-shadow: 0 0 20px 5px #ffffff; /* Increase glowing effect when cursor is active */
+  }
+  
+  .cursor.link-hover,
+  .cursor.button-hover {
+    transform: scale(0.1); /* Scale down for links and buttons */
+  }
+  

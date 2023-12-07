@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-    output: 'standalone', // Move the output option here
-  },
+  
   postcss: (webpack) => {
     return [
       require('tailwindcss'),

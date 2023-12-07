@@ -320,7 +320,7 @@ const Profile = () => {
             {userData.favourite_regions != undefined &&
               userData.favourite_regions.map((curr, index) => {
                 return (
-                  <div className=" rounded-2xl h-1/6 border w-fit pl-3 pr-3 inline-block m-1">
+                  <div key={index} className=" rounded-2xl h-1/6 border w-fit pl-3 pr-3 inline-block m-1">
                     {curr}{" "}
                     <button
                       className=" font-bold text-red-600"
@@ -362,7 +362,7 @@ const Profile = () => {
                 } */
                 }
                 return (
-                  <div className=" rounded-2xl h-1/6 border w-fit pl-3 pr-3 inline-block m-1">
+                  <div key={index} className=" rounded-2xl h-1/6 border w-fit pl-3 pr-3 inline-block m-1">
                     {curr}{" "}
                     <button
                       className=" font-bold text-red-600"

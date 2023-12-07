@@ -13,7 +13,7 @@ export default function CuisineCard({ recipe,width }) {
         })
     }
   return (
-    <div className={`bg-white overflow-hidden rounded-xl w-${width} h-4/5 mb-4`}>
+    <div className={`bg-white overflow-hidden rounded-lg mt-5 mb-5 md:mt-0 md:mb-4 sm:h-4/5 lg:pb-2 sm:pb-9`}>
       <img className=" h-3/5 w-full" src={recipe.img_url} />
       <div className=" flex flex-row justify-between mt-6 ml-4 mr-2 h-12">
         
@@ -23,7 +23,7 @@ export default function CuisineCard({ recipe,width }) {
           <div className=" text-base">{recipe.continent}</div>
         </div>
       </div>
-      <div className="top-3 translate-y-6"><button className=" ml-4 pl-3 pr-3 pt-1 pb-1 bg-red-400 rounded-lg">COOK</button></div>
+      <div className="top-3 translate-y-6"><button className=" font-extrabold ml-4 pl-3 pr-3 pt-1 pb-1 bg-[#3ea79d] hover:scale-110 hover:bg-green-300 rounded-lg">COOK</button></div>
     </div>
   );
 }

@@ -2,6 +2,8 @@ import Cors from 'micro-cors';
 
 const cors = Cors();
 
+
+
 async function fetchBearerToken() {
     console.log("Fetching Bearer Token");
 
@@ -30,6 +32,30 @@ async function fetchBearerToken() {
     //console.log(data)
     return data.access_token;
 }
+
+async function fetchIndianRecipes(bearerToken) {
+
+    //console.log(bearerToken)
+    console.log("Fetching Random Indian Recipes");
+
+    const recipeUrl = "https://cosylab.iiitd.edu.in/api/recipeDB/search_subregion/Indian/";
+
+    const response = await fetch(recipeUrl, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${bearerToken}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch recipe of the day");
+    }
+
+    const data = await response.json();
+     //console.log(data)
+    return data;
+}
+
 
 async function fetchRecipeOfTheDay(bearerToken) {
 
@@ -89,4 +115,4 @@ async function fetchRecipeByID(bearerToken, id) {
 
 
 
-export { fetchBearerToken, fetchRecipeOfTheDay, fetchRecipeByID }
+export { fetchBearerToken, fetchRecipeOfTheDay, fetchRecipeByID ,fetchIndianRecipes}

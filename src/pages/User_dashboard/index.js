@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/Dashboard.module.scss";
 import Profile from "../../components/Profile/Profile.jsx";
-import Settings from "@/components/Settings/Settings";
 import Cuisines from "@/components/Cuisines/Cuisines";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -14,7 +13,7 @@ import UserForm from "../UserPersonalisation";
 
 export default function Dashboard({recipeHistory}) {
     //console.log(recipeHistory)
-  const [activeComponent, setActiveComponent] = useState("settings");
+  const [activeComponent, setActiveComponent] = useState("cuisines");
   const [userData, setUserData] = useState(null);
   const router = useRouter();
   const session = useSession();

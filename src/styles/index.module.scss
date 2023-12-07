@@ -1,11 +1,18 @@
 @import "../styles/variables.module.scss";
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Martel+Sans:wght@200&display=swap');
 
-.ArchitectureFont{
-  font-family: 'Architects Daughter', cursive;
+/* styles/index.module.scss */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  font-family: 'Martel Sans', sans-serif;
-  font-weight:bolder;
-
-
+.fadeInUp {
+  animation: fadeInUp 1s ease-out;
 }
