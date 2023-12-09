@@ -10,7 +10,7 @@ import ProfileImg from "../../assets/user.png";
 import cuisineImg from "../../assets/chef.png";
 import { Image } from "next/dist/client/image-component";
 import UserForm from "../UserPersonalisation";
-
+import CustomCursor from "../../components/Cursor"
 export default function Dashboard({recipeHistory}) {
     //console.log(recipeHistory)
   const [activeComponent, setActiveComponent] = useState("cuisines");
@@ -40,6 +40,7 @@ export default function Dashboard({recipeHistory}) {
 
   return (
     <div className={styles.dashboardContainer + " mt-24"}>
+    <CustomCursor />
       <div
         className={
           styles.sideMenu +
