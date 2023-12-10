@@ -35,12 +35,19 @@ export default function Index({ recipe, IndianRecipes }) {
 
   return (
     <div className=" md:pl-44 md:pr-44">
-    <CustomCursor />
-      <div className=" sm:pl-6 sm:pr-6 hero">
-        <div className={styles.ArchitectureFont + ` mt-36 text-5xl mb-12 ${styles.fadeInUp} `}>
+      <CustomCursor />
+      <div className=" pl-4 pr-4  hero">
+        <div
+          className={
+            styles.ArchitectureFont +
+            ` mt-36 text-5xl mb-12 ${styles.fadeInUp} `
+          }
+        >
           Recipe Of The Day
         </div>
-        <div className={`flex lg:flex-row sm:flex-col justify-between ${styles.fadeInUp}`}>
+        <div
+          className={`flex lg:flex-row sm:flex-col justify-between ${styles.fadeInUp}`}
+        >
           <div className=" lg:w-2/5 sm:w-full">
             <div className=" text-3xl mb-3">{recipe.recipe_title}</div>
             <div className=" mb-12">
@@ -60,28 +67,32 @@ export default function Index({ recipe, IndianRecipes }) {
             </div>
           </div>
 
-          <div>
-            <GlassCard src={recipe.img_url}></GlassCard>
+          <div className=" sm:w-fit sm:mb-10 mt-5 md:w-3/5 md:pl-20">
+            <img src={recipe.img_url}></img>
           </div>
         </div>
       </div>
       <div className=" md:mt-16 md:mb-12">
-        <div className={styles.ArchitectureFont + " sm:text-center font-bold text-5xl"}>
-          EXPLORE MORE
-        </div>
-        <div className=" sm:text-center ">From continental to italian... we got it all</div>
         <div
           className={
-            ` Ephsis italic flex lg:flex-row sm:flex-col mt-10 justify-between align-middle text-black ${styles.fadeInUp}`
+            styles.ArchitectureFont + " sm:text-center font-bold text-5xl"
           }
         >
-          <div className=" sm:translate-x-24 md:translate-x-0 md:w-1/4 sm:w-3/5">
+          EXPLORE MORE
+        </div>
+        <div className=" sm:text-center ">
+          From continental to italian... we got it all
+        </div>
+        <div
+          className={` Ephsis italic flex lg:flex-row sm:flex-col mt-10 justify-between align-middle text-black ${styles.fadeInUp}`}
+        >
+          <div className=" sm:translate-x-[13.5%] md:translate-x-0 md:w-1/4 sm:w-4/5">
             <CuisineCard recipe={IndianRecipes[0]} />
           </div>
-          <div className=" sm:translate-x-24 md:translate-x-0 md:w-1/4 sm:w-3/5">
+          <div className=" sm:translate-x-[13.5%] md:translate-x-0 md:w-1/4 sm:w-4/5">
             <CuisineCard recipe={IndianRecipes[1]} />
           </div>
-          <div className=" sm:translate-x-24 md:translate-x-0 md:w-1/4 sm:w-3/5">
+          <div className=" sm:translate-x-[13.5%] md:translate-x-0 md:w-1/4 sm:w-4/5">
             <CuisineCard recipe={IndianRecipes[2]} />
           </div>
         </div>
@@ -91,12 +102,14 @@ export default function Index({ recipe, IndianRecipes }) {
           WHO ARE WE?
         </div>
 
-        <div className={`flex flex-col md:flex-row justify-evenly items-center mt-8 mb-6 ${styles.fadeInUp}`}>
+        <div
+          className={`flex flex-col md:flex-row justify-evenly items-center mt-8 mb-6 ${styles.fadeInUp}`}
+        >
           <div className="flex flex-col items-center sm:mt-5">
             <Image
               src={cutleryImg}
-              width={130}
-              height={130}
+              width={150}
+              height={150}
               alt="Cutlery Image"
             />
             <h1 className="w-full text-center">Endless</h1>
@@ -105,8 +118,8 @@ export default function Index({ recipe, IndianRecipes }) {
           <div className="flex flex-col items-center sm:mt-5">
             <Image
               src={CommunityLogo}
-              width={130}
-              height={130}
+              width={150}
+              height={150}
               alt="Community Logo"
             />
             <h1 className="w-full text-center">Community</h1>
@@ -115,8 +128,8 @@ export default function Index({ recipe, IndianRecipes }) {
           <div className="flex flex-col items-center sm:mt-5">
             <Image
               src={personalizationLogo}
-              width={130}
-              height={130}
+              width={150}
+              height={150}
               alt="Personalization Logo"
             />
             <h1 className="w-full text-center">Personalized</h1>
@@ -133,10 +146,10 @@ export default function Index({ recipe, IndianRecipes }) {
             At the heart of our platform is the commitment to bring joy to your
             kitchen through a daily dose of delectable recipes tailored to your
             unique preferences. We understand that every palate is distinct, and
-            that`&apos;`s why our team works tirelessly to curate a diverse array of
-            recipes that cater to a myriad of tastes, dietary needs, and
-            cultural preferences.So enjoy every minute of taste with work and
-            delve into a world of cuisines.(Work Done By RecipeDb team )
+            that`&apos;`s why our team works tirelessly to curate a diverse
+            array of recipes that cater to a myriad of tastes, dietary needs,
+            and cultural preferences.So enjoy every minute of taste with work
+            and delve into a world of cuisines.(Work Done By RecipeDb team )
           </div>
         </div>
       </div>
